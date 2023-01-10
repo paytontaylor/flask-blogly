@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Users {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-3">Users</h1>
+    <ul>
+        {% for user in users %}
+        <li><a href="/users/{{user.id}}">{{user.full_name}}</a></li>
+        {% endfor %}
+    </ul>
+    <form action="/users/new">
+        <button type="submit" class="btn btn-secondary btn-sm">Add User</button>
+        <button type="submit" class="btn btn-primary btn-sm" formaction="/tags/new">Create Tag</button>
+    </form>
+</div>
+{% endblock %}

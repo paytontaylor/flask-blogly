@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Show User {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <p>By: {{post.user.full_name}}</p>
+    <p class="mb-4 font-weight-bold">Tags:
+        {% for tag in tags %}
+          <a class="badge text-bg-primary text-decoration-none" href='/tags/{{tag.id}}'>{{tag.name}}</a>
+        {% endfor %}
+      </p>
+    <form action="/users/{{post.user_id}}" class="d-inline">
+        <button type="submit" class="btn btn-outline-primary btn-sm">Cancel</button>
+    </form>
+    <form action="/posts/{{post.id}}/edit" class="d-inline">
+        <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+    </form>
+    <form action="/posts/{{post.id}}/delete" method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </form>
+</div>
+{% endblock %}

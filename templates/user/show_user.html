@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% block title %} 
+Home 
+{% endblock %} 
+{% block content %}
+<div class="container">
+    <img src="{{user.image_url}}" alt="" class="img-thumbnail mt-5" width="200" height="200">
+    <h1>{{user.full_name}}</h1>
+    <form action="/users/{{user.id}}/edit" class="d-inline">
+        <button type="submit" class="btn btn-primary btn-md">Edit</button>
+    </form>
+    <form action="/users/{{user.id}}/delete" method="post" class="d-inline">
+        <button type="submit" class="btn btn-danger btn-md">Delete</button>
+    </form>
+    <br>
+    <h3 class="mt-3">Posts</h3>
+    <ul>
+        {% for post in posts %}
+        <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <form action="/users/{{user.id}}/posts/new">
+        <button class="btn btn-primary btn-md">Add Post</button>
+    </form>
+</div>
+{% endblock %}
